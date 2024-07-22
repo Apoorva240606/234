@@ -179,6 +179,8 @@ GLfloat normals[][3] = {{-1.0,-1.0,-1.0},{1.0,-1.0,-1.0}, {1.0,1.0,-1.0}, {-1.0,
  {-1.0,-1.0,1.0}, {1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
 GLfloat colors[][3] = {{0.0,0.0,0.0},{1.0,0.0,0.0}, 	{1.0,1.0,0.0}, {0.0,1.0,0.0}, 	{0.0,0.0,1.0},{1.0,0.0,1.0}, {1.0,1.0,1.0}, 	{0.0,1.0,1.0}};
 void polygon(int a, int b, int c , int d)
+GLfloat theta[]={1.0,1.0,1.0};
+int axis=0;
 {/* draw a polygon via list of vertices */
  glBegin(GL_POLYGON);
          glColor3fv(colors[a]);
@@ -195,6 +197,16 @@ void polygon(int a, int b, int c , int d)
                 glVertex3fv(vertices[d]);      
                 glEnd();      
 }
+void colorcube()
+{
+	polygon(0,3,2,1);
+	polygon(2,3,7,6);
+	polygon(0,4,7,3);
+	polygon(1,2,6,5);
+	polygon(4,5,6,7);
+	polygon(0,1,5,4);
+}
+
 void display(void)
 {/* display callback, clear frame buffer and z buffer,
    rotate cube and draw, swap buffers */
@@ -206,6 +218,8 @@ void display(void)
         colorcube();
         glFlush();
         glutSwapBuffers();
+
+}
 void spinCube()
 {/* Idle callback, spin cube 2 degrees about selected axis*/ 
 	theta[axis] += 0.1;
